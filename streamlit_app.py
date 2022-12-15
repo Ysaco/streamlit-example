@@ -3,23 +3,30 @@ import altair as alt
 import math
 import pandas as pd
 import streamlit as st
+import numpy as np
+import matplotlib.pyplot as mlp
+import re
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import linear_kernel
+from fuzzywuzzy import fuzz
+from datetime import date
 
 """
-# Welcome to Streamlit!
+# Welcome to Steam Reco!
 
-Edit `/streamlit_app.py` to customize this app to your heart's desire :heart:
+##SteamReco is a game recommendation system based of steam games for our fellow gamers! :video_game:
 
-If you have any questions, checkout our [documentation](https://docs.streamlit.io) and [community
-forums](https://discuss.streamlit.io).
+This app uses a database based on a webscraping on the steam webpage, it does not use SteamKit or any external tool, just BeautifulSoup and a bit of patience.
 
-In the meantime, below is an example of what you can do with just a few lines of code:
+For more info, insight, or further development on this web app, you can contact me at "ysaco7@gmail.com"
+
 """
+game_list = pd.read_excel('Webscraping_1.csv')
 
 
-with st.echo(code_location='below'):
-    total_points = st.slider("Number of points in spiral", 1, 5000, 2000)
-    num_turns = st.slider("Number of turns in spiral", 1, 100, 9)
+
     insert_game = st.text_input("Insert a game you like")
+    quantity = st.slider("Quantity of games you would like to see", 1, 4500, 100)
 
     Point = namedtuple('Point', 'x y')
     data = []
@@ -33,7 +40,7 @@ with st.echo(code_location='below'):
         x = radius * math.cos(angle)
         y = radius * math.sin(angle)
         data.append(Point(x, y))
-
+with st.echo(code_location='below'):
     st.altair_chart(alt.Chart(pd.DataFrame(data), height=500, width=500)
         .mark_circle(color='#0068c9', opacity=0.5)
         .encode(x='x:Q', y='y:Q'))

@@ -29,7 +29,7 @@ vectorizer_train = TfidfVectorizer(analyzer = 'word', min_df=0.0, max_df = 1.0, 
                                        encoding = 'utf-8', preprocessor=None)
 vector_matrix = vectorizer_train.fit_transform(game_list['genre'])
 
-cos_matrix = linear_kernel(vector_matrix,vector_matrix)
+cos_matrix = linear_kernel(vector_matrix[21022],vector_matrix[21022])
 
 def get_title_from_index(index):
     return game_list[game_list.index == index]['title'].values[0]

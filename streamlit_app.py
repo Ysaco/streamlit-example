@@ -4,7 +4,6 @@ import math
 import pandas as pd
 import streamlit as st
 import numpy as np
-import matplotlib.pyplot as mlp
 import re
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel

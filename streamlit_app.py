@@ -22,7 +22,7 @@ This app uses a database based on a webscraping on the steam webpage, it does no
 """
 
 #For more info, insight, or further development on this web app, you can contact me at "ysaco7@gmail.com"
-game_list = pd.read_excel('all_data.xlsx')
+game_list = pd.read_excel('Webscraping_1.csv')
 
 vectorizer_train = TfidfVectorizer(analyzer = 'word', min_df=0.0, max_df = 1.0, strip_accents = None,
                                        encoding = 'utf-8', preprocessor=None)
